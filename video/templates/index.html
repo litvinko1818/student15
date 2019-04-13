@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for v in video %}
+    <h1>{{ v.title }}</h1>
+    <iframe width="853" height="480" src={{ v.url }} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h3>{{ v.description }}</h3>
+    <h3>this video has {{ v.like }} Likes</h3>
+    <h2>{{ v.date }}</h2>
+    {% for c in comment %}
+        {% if c.video == v %}
+            <hr>
+            <h4>{{ c.text }}</h4>
+            <h5>this comment from user {{ c.user }}</h5>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+<hr>
+</body>
+</html>
