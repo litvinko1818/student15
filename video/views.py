@@ -25,3 +25,10 @@ def fun(request):
         print(request.POST.get('comment'))
         return redirect('/hello/')
     return render(request, "forms.html", csrf(request))
+
+
+def add_like(request):
+    video = Video.objects.get(id=request.GET['id'])
+    video.like += 1
+    video.save()
+    return HttpResponse(str(video.like))
