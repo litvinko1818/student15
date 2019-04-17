@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main_template.html" %}
+
+{% block video %}
+
+
 {% for v in video %}
     <h1>{{ v.title }}</h1>
     <iframe width="853" height="480" src={{ v.url }} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -20,5 +18,5 @@
     {% endfor %}
 {% endfor %}
 <hr>
-</body>
-</html>
+
+{% endblock %}

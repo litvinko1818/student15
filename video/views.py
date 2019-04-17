@@ -14,14 +14,14 @@ def hello(request):
 def fun(request):
     if request.GET:
         print(request.user.username)
-        print(request.GET['login'])
-        print(request.GET['password'])
+        print(request.GET.get('login'))
+        print(request.GET.get('password'))
+        print(request.GET.get('comment'))
         return redirect('/hello/')
     if request.POST:
         print(request.user.username)
-        print(request.POST['login'])
-        print(request.POST['password'])
+        print(request.POST.get('label'))
+        print(request.POST.get('password'))
+        print(request.POST.get('comment'))
         return redirect('/hello/')
     return render(request, "forms.html", csrf(request))
-
-# Create your views here.
