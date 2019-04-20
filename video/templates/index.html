@@ -20,7 +20,24 @@
             <h5>this comment from user {{ c.user }}</h5>
         {% endif %}
     {% endfor %}
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <textarea id="t{{ v.id }}" class="form-control" rows="5" id="comment" name="comment"></textarea>
+        </div>
+        <button type="button" class="btn btn-dark" id="{{ v.id }}">OK</button>
 {% endfor %}
 <hr>
+    <script>
+        $('document').ready(
+            $("button").on('click', function () {
+                var id = $(this).attr('id');
+                var val = $("#t" + id).val();
+                $("#t" + id).val("");
+                $.ajax({url:"/add_comment/", data:{"id":id, "val":val}})
+
+                console.log(val)
+            })
+        )
+    </script>
 
 {% endblock %}

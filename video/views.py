@@ -32,3 +32,12 @@ def add_like(request):
     video.like += 1
     video.save()
     return HttpResponse(str(video.like))
+
+
+def add_comment(request):
+    print(request.GET['val'])
+    print(request.GET['id'])
+    video = Video.objects.get(id = request.GET['id'])
+    comment = Comment(text=request.GET['val'], video=video, user=request.user)
+    comment.save()
+    return HttpResponse('')
