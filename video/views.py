@@ -40,4 +40,4 @@ def add_comment(request):
     video = Video.objects.get(id = request.GET['id'])
     comment = Comment(text=request.GET['val'], video=video, user=request.user)
     comment.save()
-    return HttpResponse('')
+    return HttpResponse(str(request.user))

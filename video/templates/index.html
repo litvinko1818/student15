@@ -13,6 +13,7 @@
         <h3 id="like{{ v.id }}">this video has {{ v.like }} Likes</h3>
     </div>
     <h2>{{ v.date }}</h2>
+    <div id="c{{ v.id }}">
     {% for c in comment %}
         {% if c.video == v %}
             <hr>
@@ -20,6 +21,7 @@
             <h5>this comment from user {{ c.user }}</h5>
         {% endif %}
     {% endfor %}
+    </div>
         <div class="form-group">
           <label for="comment">Comment:</label>
           <textarea id="t{{ v.id }}" class="form-control" rows="5" id="comment" name="comment"></textarea>
@@ -33,7 +35,13 @@
                 var id = $(this).attr('id');
                 var val = $("#t" + id).val();
                 $("#t" + id).val("");
-                $.ajax({url:"/add_comment/", data:{"id":id, "val":val}})
+                $.ajax({
+                    url:"/add_comment/",
+                    data:{"id":id, "val":val},
+                    success:function (user) {
+                        $('div#c' + id).append("<hr><h4>" + val + "</h4><h5>this comment from user " + user + "</h5>")
+                    }
+                })
 
                 console.log(val)
             })
